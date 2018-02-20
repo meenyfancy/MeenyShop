@@ -30,7 +30,7 @@ if (!is_null($events['events'])) {
 	}
 }
 
-echo "Done.";
+echo "1.";
 
 function replymsg($channel_token,$replyToken,$msg){
 	$httpClient = new CurlHTTPClient($channel_token);
