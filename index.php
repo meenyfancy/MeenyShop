@@ -19,14 +19,23 @@ if (!is_null($events['events'])) {
 				// Get replyToken
 				$replyToken = $event['replyToken'];
 				// Reply message
-				$respMessage = 'Hello, your message is '. $event['message']['text'];
-				$httpClient = new CurlHTTPClient($channel_token);
-				$bot = new LINEBot($httpClient, array('channelSecret' => $channel_secret));
-				$textMessageBuilder = new TextMessageBuilder($respMessage);
-				$response = $bot->replyMessage($replyToken, $textMessageBuilder);
+
+				$msg = 'Hello, your message is '. $event['message']['text'];
+				
+				replymsg($channel_token,$replyToken,$msg)
+
 				break;
 			}
 		}
 	}
 }
+
 echo "Done.";
+
+function replymsg($channel_token,$replyToken,$msg){
+	$httpClient = new CurlHTTPClient($channel_token);
+	$bot = new LINEBot($httpClient, array('channelSecret' => $channel_secret));
+	$textMessageBuilder = new TextMessageBuilder($msg);
+	$response = $bot->replyMessage($replyToken, $textMessageBuilder);
+
+}
